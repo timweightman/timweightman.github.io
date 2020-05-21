@@ -1,0 +1,19 @@
+{
+  "themes": [
+    {
+      "background": "linear-gradient(90deg, var(--theme-baseColor) 1vw, aliceblue 1vw) no-repeat content-box",
+      "baseColor": "dodgerblue",
+      "darkColor": "darkblue"
+    },
+    {
+      "background": "radial-gradient(circle at center left, #f7f4ff 90%, var(--theme-baseColor) 90%) no-repeat content-box",
+      "baseColor": "crimson",
+      "darkColor": "darkred"
+    },
+    {
+      "background": "linear-gradient(175deg, papayawhip 98vh, var(--theme-baseColor) 98vh) no-repeat content-box",
+      "baseColor": "blueviolet",
+      "darkColor": "indigo"
+    }
+  ]
+}

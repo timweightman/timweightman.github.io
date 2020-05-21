@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="description" content="Hi there, I'm Tim Weightman.">
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-size: 16px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      }
+
+      body {
+        background: var(--theme-background, linear-gradient(to bottom, whitesmoke, white) no-repeat content-box);
+      }
+
+      main {
+        padding: 0;
+        min-height: 80vh;
+        min-width: 320px;
+      }
+
+      section {
+        margin: 20vh auto 0 auto;
+        max-width: 600px;
+      }
+
+      aside {
+        font-size: 1.5rem;
+        font-family: 'Courier New', Courier, monospace;
+        color: #222;
+        padding: 0 1rem;
+      }
+
+      h1 {
+        font-size: 3.25rem;
+        line-height: .8em;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-weight: bold;
+        color: #222;
+        margin: 1rem 0 0 0;
+        max-width: 350px;
+        padding: 0 1rem 1rem 1rem;
+        position: relative;
+      }
+
+      p {
+        font-size: 1.5rem;
+        font-family: 'Courier New', Courier, monospace;
+        color: #222;
+        padding: 0;
+        margin: 0 1rem;
+      }
+
+      p:first-of-type {
+        margin: 1rem;
+        padding-top: 1rem;
+        border-top: 2px solid var(--theme-baseColor, #555);
+      }
+
+      a {
+        color: var(--theme-baseColor, #555);
+        outline: none;
+        text-decoration: none;
+      }
+
+      a:active {
+        color: var(--theme-darkColor, #222);
+      }
+      a:hover,
+      a:focus {
+        text-decoration: underline;
+      }
+    </style>
+
+    <script type="module">
+      const randomInt = max => Math.floor(Math.random() * max)
+
+      const getThemes = async () => {
+        const response = await fetch("themes.json", {
+          method: "GET",
+          headers: {
+            "Accept": "application/json"
+          }
+        })
+
+        const isOk = 200 <= response.status && response.status <= 299;
+
+        if (!isOk) return []
+
+        const payload = await response.json()
+
+        return payload.themes
+      }
+
+      const warnNoTheme = error => console.warn("Unable to find a theme. Falling back to defaults.\n", error)
+
+      const applyTheme = theme => {
+        document.documentElement.style.setProperty("--theme-background", theme.background);
+        document.documentElement.style.setProperty("--theme-baseColor", theme.baseColor);
+        document.documentElement.style.setProperty("--theme-darkColor", theme.darkColor);
+      }
+
+      const init = async () => {
+        try {
+          const themes = await getThemes()
+          const theme = themes[randomInt(themes.length)]
+
+          theme
+            ? applyTheme(theme)
+            : warnNoTheme()
+
+        } catch (error) {
+          warnNoTheme(error)
+        }
+      }
+
+      init()
+    </script>
+  </head>
+  <body>
+    <main>
+      <section>
+        <aside>Hi there, I'm</aside>
+
+        <h1>Tim Weightman</h1>
+
+        <p>You can connect with me on <a href="https://linkedin.com/in/timweightman">LinkedIn</a>.</p>
+        <p>I currently work for <a href="https://reecegroup.com.au">Reece Group</a> as a tech lead, alongside some very talented people.</p>
+      </section>
+    </main>
+  </body>
+</html>
