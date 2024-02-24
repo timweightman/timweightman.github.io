@@ -11,9 +11,9 @@
       "darkColor": "darkred"
     },
     {
-      "background": "linear-gradient(175deg, papayawhip 98vh, var(--theme-baseColor) 98vh) no-repeat content-box",
-      "baseColor": "blueviolet",
-      "darkColor": "indigo"
+      "background": "linear-gradient(175deg, whitesmoke 98vh, var(--theme-baseColor) 98vh) no-repeat content-box",
+      "baseColor": "#222222",
+      "darkColor": "#222222"
     }
   ]
 }
